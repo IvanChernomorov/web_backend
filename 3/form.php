@@ -5,6 +5,9 @@ if (!empty($_POST)) {
 	if (empty($_POST["name"])) {
 		$errors[] = "Введите имя!";
 	}
+	else if(!preg_match(/^[a-zA-Zа-яёА-ЯЁ]+\s*[a-zA-Zа-яёА-ЯЁ]+$/ ,$_POST["name"])){
+		$errors[] = "Имя введено некорректно!";
+	}
 	if (empty($_POST["email"])) {
 		$errors[] = "Введите e-mail!";
 	}
@@ -33,6 +36,8 @@ if (isset($errors)) {
 	}
 	exit();
 }
+
+
 $name = htmlspecialchars($_POST["name"]);
 $email = htmlspecialchars($_POST["email"]);
 $year = intval(htmlspecialchars($_POST["year"]));
