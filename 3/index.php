@@ -79,6 +79,14 @@
 			<input type="submit" value="Отправить">
 		</p>
 	</form>
+	<p>
+		Создал таблицы user и user_power в базе данных
+		<img src="1.jpg" alt="screen_1">
+	</p>
+	<p>
+		Вывел информацию о таблице user а также вывел содержимое таблиц user и user_power
+		<img src="2.jpg" alt="screen_2">
+	</p>
 </body>
 
 </html>
