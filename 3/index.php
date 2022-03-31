@@ -80,11 +80,11 @@
 		</p>
 	</form>
 	<p>
-		Создал таблицы user и user_power в базе данных
+		Создал таблицы user и user_power в базе данных<br>
 		<img src="1.jpg" alt="screen_1">
 	</p>
 	<p>
-		Вывел информацию о таблице user а также вывел содержимое таблиц user и user_power
+		Вывел информацию о таблице user а также вывел содержимое таблиц user и user_power<br>
 		<img src="2.jpg" alt="screen_2">
 	</p>
 </body>
