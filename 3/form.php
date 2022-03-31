@@ -5,11 +5,14 @@ if (!empty($_POST)) {
 	if (empty($_POST["name"])) {
 		$errors[] = "Введите имя!";
 	}
-	else if(!preg_match("/^[a-zA-Zа-яёА-ЯЁ]+\s*[a-zA-Zа-яёА-ЯЁ]+$/",$_POST["name"])){
+	else if(!preg_match("/^[a-zA-Zа-яёА-ЯЁ]+\s?[a-zA-Zа-яёА-ЯЁ]+$/",$_POST["name"])){
 		$errors[] = "Имя введено некорректно!";
 	}
 	if (empty($_POST["email"])) {
 		$errors[] = "Введите e-mail!";
+	}
+	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+     		$errors[] = "Введите коррекнтый e-mail!";
 	}
 	if (empty($_POST["year"])) {
 		$errors[] = "Выберите год рождения!";
