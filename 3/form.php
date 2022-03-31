@@ -29,7 +29,11 @@ if (!empty($_POST)) {
 	if (empty($_POST["biography"])) {
 		$errors[] = "Расскажите что-нибудь о себе!";
 	}
-} else {
+	if(!isset($_POST["agree"])){
+		$errors[] = "Подтвердите отправку формы!";
+	} 
+}
+else {
 	$errors[] = "Неверные данные формы!";
 }
 
