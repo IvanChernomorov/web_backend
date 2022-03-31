@@ -5,7 +5,7 @@ if (!empty($_POST)) {
 	if (empty($_POST["name"])) {
 		$errors[] = "Введите имя!";
 	}
-	else if(!preg_match("/^[a-zA-Zа-яёА-ЯЁ]+\s?[a-zA-Zа-яёА-ЯЁ]+$/",$_POST["name"])){
+	else if(!preg_match("/^[a-zA-Zа-яёА-ЯЁ]+/",$_POST["name"])){
 		$errors[] = "Имя введено некорректно!";
 	}
 	if (empty($_POST["email"])) {
@@ -29,7 +29,11 @@ if (!empty($_POST)) {
 	if (empty($_POST["biography"])) {
 		$errors[] = "Расскажите что-нибудь о себе!";
 	}
-} else {
+	if(!isset($_POST["agree"])){
+		$errors[] = "Подтвердите отправку формы!";
+	} 
+}
+else {
 	$errors[] = "Неверные данные формы!";
 }
 
