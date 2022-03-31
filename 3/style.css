@@ -1,0 +1,9 @@
+body{
+    background-color: rgb(249, 215, 250); 
+    font-size:18px;
+    font-family: 'Times New Roman', serif;
+    text-align: center;
+}
+p{
+    line-height: 0.9;
+}
