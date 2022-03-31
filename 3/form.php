@@ -11,7 +11,7 @@ if (!empty($_POST)) {
 	if (empty($_POST["email"])) {
 		$errors[] = "Введите e-mail!";
 	}
-	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
      		$errors[] = "Введите коррекнтый e-mail!";
 	}
 	if (empty($_POST["year"])) {
