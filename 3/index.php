@@ -4,23 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style.css">
 	<title>Задание 3</title>
 </head>
 
 <body>
 	<form action="form.php" method="post">
 		<p>
-			<label>Имя<br><br>
+			<label>Имя<br>
 				<input placeholder="Имя" type="text" name="name" value="">
 			</label>
 		<p>
-			<label>E-mail<br><br>
+			<label>E-mail<br>
 				<input placeholder="E-mail" type="text" name="email" value="">
 			</label>
 		</p>
 		<p>
-			<label>Год рождения<br><br>
+			<label>Год рождения<br>
 				<select name="year">
 					<option value="">Select...</option>
 					<?php
@@ -31,7 +31,7 @@
 				</select>
 			</label>
 		</p>
-		<p>Пол<br><br>
+		<p>Пол<br>
 			<label>
 				<input type="radio" name="gender" value="man">Мужской
 			</label>
@@ -39,7 +39,7 @@
 				<input type="radio" name="gender" value="woman">Женский
 			</label>
 		</p>
-		<p>Количество конечностей<br><br>
+		<p>Количество конечностей<br>
 			<label>
 				<input type="radio" name="limb" value="1">1
 			</label>
@@ -54,7 +54,7 @@
 			</label>
 		</p>
 		<p>
-			<label>Сверхспособности<br><br>
+			<label>Сверхспособности<br>
 				<select multiple name="super-powers[]">
 					<option value="immortality">Бессмертие</option>
 					<option value="walkthrough-walls">Прохождение сквозь стены</option>
@@ -64,7 +64,7 @@
 		</p>
 		<div>
 			<p>
-				<label>Биография<br><br>
+				<label>Биография<br>
 					<textarea placeholder="Расскажите о себе" name="biography"></textarea>
 				</label>
 			</p>
