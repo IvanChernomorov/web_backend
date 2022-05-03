@@ -164,3 +164,4 @@ function writeCookies($name, &$errors)
 	} else {
 		setcookie($name, $_POST[$name], time() + 60 * 60 * 24 * 365);
 	}
+}
