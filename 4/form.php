@@ -17,12 +17,12 @@
 		</div>
 		<p>
 			<label>Имя<br>
-				<input placeholder="Имя" type="text" name="name" value="">
+				<input placeholder="Имя" type="text" name="name" value="<?php echo $message['name']; ?>">
 			</label>
 			<?php echo $message['name-error']; ?>
 		<p>
 			<label>E-mail<br>
-				<input placeholder="E-mail" type="text" name="email" value="">
+				<input placeholder="E-mail" type="text" name="email" value="<?php echo $message['email']; ?>">
 			</label>
 			<?php echo $message['email-error']; ?>
 		</p>
