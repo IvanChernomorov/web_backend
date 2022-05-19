@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('numlimbs', $message);
 	checkCookies('super-powers', $message);
 	checkCookies('biography', $message);
-	require_once("form.php");
+	
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
 		//TODO: Сделать выход
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
 	}
+	require_once("form.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	session_start();
 	require_once(BASE_DIR . "src/UserData.php");
