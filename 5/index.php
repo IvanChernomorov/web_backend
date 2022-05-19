@@ -176,7 +176,7 @@ function checkCookies($name, &$message)
 		$message[$name] = '';
 	}
 	if (!empty($_COOKIE[$name . '-error'])) {
-		$message[$name . '-error'] = "<span class='error'>{$_COOKIE[$name . '-error']}</span>";;
+		$message[$name . '-error'] = "<div class='error'>{$_COOKIE[$name . '-error']}</div>";;
 		setcookie($name . '-error', '', time() - 60 * 60 * 24);
 	} else {
 		$message[$name . '-error'] = '';
