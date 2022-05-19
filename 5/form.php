@@ -102,7 +102,7 @@
 		</div>
 		<p>
 			<label>
-				<input type="checkbox" name="agree" require>С условиями контранктом ознакомлен
+				<input type="checkbox" name="agree" required>С условиями контранктом ознакомлен
 				(а)
 			</label>
 		</p>
