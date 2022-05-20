@@ -11,56 +11,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		exit();
 	}
 
-	require_once(BASE_DIR . "login/layout/start.php");
+	require_once("loginpage.php");
 
 	if (!empty($_COOKIE['login-request-error'])) {
 		setcookie("login-request-error", '', time() - 60 * 60 * 24);
-
-		require_once(BASE_DIR . "login/layout/header/error.php");
+		$lheader  = "Что-то пошло не так!";
 	} elseif (!empty($_COOKIE['login-auth-error'])) {
 		setcookie('login-auth-error', '', time() - 60 * 60 * 24);
-
-		require_once(BASE_DIR . "login/layout/header/dataError.php");
+		$lheader  = "Неверный логин и/или пароль";
 	} else {
-		require_once(BASE_DIR . "login/layout/header/header.php");
+		$lheader = "Авторизуйтесь";
 	}
-
 	$message = array('login-error' => '', 'password-error' => '');
 	if (!empty($_COOKIE['login-error'])) {
 		setcookie('login-error', '', time() - 60 * 60 * 24);
 
 		$message['login-error'] =
-			"<div class='form__container form__container_err'>
-			<span class='form__span'>{$_COOKIE['login-error']}</span>
-		</div>";
+			"<div class='error'>{$_COOKIE['login-error']}</div>";
 	}
 
 	if (!empty($_COOKIE['password-error'])) {
 		setcookie('password-error', '', time() - 60 * 60 * 24);
 		$message['password-error'] =
-			"<div class='form__container form__container_err'>
-			<span class='form__span'>{$_COOKIE['password-error']}</span>
-		</div>";
+			"<div class='error'>{$_COOKIE['password-error']}</div>";
 	}
-
-	require_once(BASE_DIR . "login/layout/form.php");
-	require_once(BASE_DIR . "login/layout/end.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	session_start();
-require_once(BASE_DIR . "src/db.php");
+	$dbServerName = 'localhost';
+	$dbUser = "u47556";
+	$dbPassword = "2195834";
+	$dbName = $dbUser;
+	$requestError = false;
+	if (!empty($_POST)) {
+		if (empty($_POST["login"])) {
+			$errors['login'] = "Введите логин";
+		}
 
-$requestError = false;
-if (!empty($_POST)) {
-	if (empty($_POST["login"])) {
-		$errors['login'] = "Введите логин";
+		if (empty($_POST["password"])) {
+			$errors['password'] = "Введите пароль";
+		}
+	} else {
+		$requestError = true;
 	}
-
-	if (empty($_POST["password"])) {
-		$errors['password'] = "Введите пароль";
-	}
-} else {
-	$requestError = true;
-}
 
 
 	if (isset($errors['login'])) {
@@ -71,42 +63,39 @@ if (!empty($_POST)) {
 	}
 
 
-if (isset($errors)) {
-	header("Location: login.php");
-	exit();
-}
-
-$userLogin = $_POST["login"];
-$userPassword = $_POST["password"];
-
-require_once("src/db.php");
-$db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword, array(PDO::ATTR_PERSISTENT => true));
-
-$success = false;
-try {
-	$sql =
-		"SELECT * FROM user_authentication
-			WHERE login = :login";
-	$stmt = $db->prepare($sql);
-	$stmt->execute(array('login' => $userLogin));
-	$result = $stmt->fetch();
-
-	if (!empty($result)) {
-		$success = password_verify($userPassword, $result['password']);
-		$userId = $result['id'];
+	if (isset($errors)) {
+		header("Location: login.php");
+		exit();
 	}
-} catch (PDOException $e) {
-	print('Error : ' . $e->getMessage());
-	exit();
-}
 
-if ($success) {
-	$_SESSION['login'] = $userLogin;
-	$_SESSION['loginid'] = $userId;
-} else {
-	setcookie('login-auth-error', '1', time() + 60 * 60 * 24);
-	header("Location: login.php");
-	exit();
-}
-header("Location: index.php");
+	$userLogin = $_POST["login"];
+	$userPassword = $_POST["password"];
+	$db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword, array(PDO::ATTR_PERSISTENT => true));
+	$success = false;
+	try {
+		$sql =
+			"SELECT * FROM user_authentication
+			WHERE login = :login";
+		$stmt = $db->prepare($sql);
+		$stmt->execute(array('login' => $userLogin));
+		$result = $stmt->fetch();
+
+		if (!empty($result)) {
+			$success = password_verify($userPassword, $result['password']);
+			$userId = $result['id'];
+		}
+	} catch (PDOException $e) {
+		print('Error : ' . $e->getMessage());
+		exit();
+	}
+
+	if ($success) {
+		$_SESSION['login'] = $userLogin;
+		$_SESSION['loginid'] = $userId;
+	} else {
+		setcookie('login-auth-error', '1', time() + 60 * 60 * 24);
+		header("Location: login.php");
+		exit();
+	}
+	header("Location: index.php");
 }
