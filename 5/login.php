@@ -11,8 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		exit();
 	}
 
-	require_once("loginpage.php");
-
 	if (!empty($_COOKIE['login-request-error'])) {
 		setcookie("login-request-error", '', time() - 60 * 60 * 24);
 		$lheader  = "Что-то пошло не так!";
@@ -35,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$message['password-error'] =
 			"<div class='error'>{$_COOKIE['password-error']}</div>";
 	}
+	require_once("loginpage.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	session_start();
 	$dbServerName = 'localhost';
