@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			header("Location: index.php");
 			exit();
 		}else {
-			$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'index.php'>Выйти из аккаунта</a></div>";
+			$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'index.php' do='logout'>Выйти из аккаунта</a></div>";
 		}
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
