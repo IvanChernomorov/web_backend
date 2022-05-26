@@ -4,6 +4,9 @@ define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
+			session_destroy();
+		}
 		header("Location: index.php");
 		exit();
 	} elseif (!empty($_COOKIE['login-auth-error'])) {
