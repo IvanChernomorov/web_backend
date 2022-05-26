@@ -11,10 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		exit();
 	}
 
-	if (!empty($_COOKIE['login-request-error'])) {
-		setcookie("login-request-error", '', time() - 60 * 60 * 24);
-		$lheader  = "Что-то пошло не так!";
-	} elseif (!empty($_COOKIE['login-auth-error'])) {
+	 elseif (!empty($_COOKIE['login-auth-error'])) {
 		setcookie('login-auth-error', '', time() - 60 * 60 * 24);
 		$lheader  = "Неверный логин и/или пароль";
 	} else {
@@ -49,9 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if (empty($_POST["password"])) {
 			$errors['password'] = "Введите пароль";
 		}
-	} else {
-		$requestError = true;
-	}
+	} 
 
 
 	if (isset($errors['login'])) {
