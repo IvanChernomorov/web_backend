@@ -3,7 +3,6 @@
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	session_start();
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
 		setcookie("save", '', time() - 60 * 60 * 24);
@@ -33,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 	require_once("form.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	session_start();
 	require_once(BASE_DIR . "src/UserData.php");
 	require_once(BASE_DIR . "src/formHandler.php");
 	$dbServerName = 'localhost';
