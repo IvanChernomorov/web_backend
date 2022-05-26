@@ -5,7 +5,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		session_destroy();
 		header("Location: index.php");
 		exit();
 	} elseif (!empty($_COOKIE['login-auth-error'])) {
