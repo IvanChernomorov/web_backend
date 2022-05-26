@@ -26,13 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('biography', $message);
 	
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
-			session_destroy();
-			header("Location: index.php");
-			exit();
-		}else {
-			$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'a href=login.php?do=logout'>Выйти из аккаунта</a></div>";
-		}
+		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'a href=login.php?do=logout'>Выйти из аккаунта</a></div>";
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
 	}
