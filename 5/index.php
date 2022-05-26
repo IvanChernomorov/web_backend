@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
 		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'index.php'>Выйти из аккаунта</a></div>";
+		session_destroy();
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
 	}
