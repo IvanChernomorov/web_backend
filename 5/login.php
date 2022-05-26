@@ -1,19 +1,14 @@
 <?php
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	session_start();
-
+	
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
 		session_destroy();
 		header("Location: index.php");
 		exit();
 	}
-
-	if (!empty($_COOKIE['login-request-error'])) {
-		setcookie("login-request-error", '', time() - 60 * 60 * 24);
-		$lheader  = "Что-то пошло не так!";
 	} elseif (!empty($_COOKIE['login-auth-error'])) {
 		setcookie('login-auth-error', '', time() - 60 * 60 * 24);
 		$lheader  = "Неверный логин и/или пароль";
@@ -35,12 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 	require_once("loginpage.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	session_start();
 	$dbServerName = 'localhost';
 	$dbUser = "u47556";
 	$dbPassword = "2195834";
 	$dbName = $dbUser;
-	$requestError = false;
 	if (!empty($_POST)) {
 		if (empty($_POST["login"])) {
 			$errors['login'] = "Введите логин";
@@ -49,10 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if (empty($_POST["password"])) {
 			$errors['password'] = "Введите пароль";
 		}
-	} else {
-		$requestError = true;
-	}
-
 
 	if (isset($errors['login'])) {
 		setcookie('login-error', $errors['login'], time() + 60 * 60 * 24);
