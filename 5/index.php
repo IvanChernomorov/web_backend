@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		setcookie("login", '', time() - 60 * 60 * 24);
 		setcookie("password", '', time() - 60 * 60 * 24);
 		$fheader = "<p>Ваши данные сохранены!<p>";
-		$flogin = "<p>Ваш логин:</p>" . $_COOKIE['login'] . "<p>Ваш пароль: </p>" . $_COOKIE['password'] . "<p><a href = 'login.php'>Войти</a></p>";
+		$flogin = "<p>Ваш логин:</p>" . $_COOKIE['login'] . "<p>Ваш пароль: </p>" . $_COOKIE['password'] . "<p><a href = 'login.php' do=logout>Войти</a></p>";
 	} elseif (!empty($_COOKIE['update'])) {
 		setcookie("update", '', time() - 60 * 60 * 24);
 		$fheader = "<p>Ваши данные обновлены!<p>";
