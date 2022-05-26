@@ -1,15 +1,16 @@
 <?php
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
-session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+	session_start();
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
 		setcookie("save", '', time() - 60 * 60 * 24);
 		setcookie("login", '', time() - 60 * 60 * 24);
 		setcookie("password", '', time() - 60 * 60 * 24);
 		$fheader = "<p>Ваши данные сохранены!<p>";
-		$flogin = "<p>Ваш логин:</p>" . $_COOKIE['login'] . "<p>Ваш пароль: </p>" . $_COOKIE['password'] . "<p><a href = 'login.php' do=logout>Войти</a></p>";
+		$flogin = "<p>Ваш логин:</p>" . $_COOKIE['login'] . "<p>Ваш пароль: </p>" . $_COOKIE['password'] . "<p><a href = 'login.php'>Войти</a></p>";
 	} elseif (!empty($_COOKIE['update'])) {
 		setcookie("update", '', time() - 60 * 60 * 24);
 		$fheader = "<p>Ваши данные обновлены!<p>";
@@ -26,12 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('biography', $message);
 	
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'a href=login.php?do=logout'>Выйти из аккаунта</a></div>";
+		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'login.php'>Выйти из аккаунта</a></div>";
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
 	}
 	require_once("form.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	session_start();
 	require_once(BASE_DIR . "src/UserData.php");
 	require_once(BASE_DIR . "src/formHandler.php");
 	$dbServerName = 'localhost';
