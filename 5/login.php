@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		session_destroy();
 		header("Location: index.php");
 		exit();
-	}
 	} elseif (!empty($_COOKIE['login-auth-error'])) {
 		setcookie('login-auth-error', '', time() - 60 * 60 * 24);
 		$lheader  = "Неверный логин и/или пароль";
@@ -29,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			"<div class='error'>{$_COOKIE['password-error']}</div>";
 	}
 	require_once("loginpage.php");
+	
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$dbServerName = 'localhost';
 	$dbUser = "u47556";
