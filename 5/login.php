@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 	require_once("loginpage.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	session_start();
 	$dbServerName = 'localhost';
 	$dbUser = "u47556";
 	$dbPassword = "2195834";
