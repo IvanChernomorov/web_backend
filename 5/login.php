@@ -2,7 +2,7 @@
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+	if (session_start() && !empty($_SESSION['login'])) {
 		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
 			session_destroy();
 		}
