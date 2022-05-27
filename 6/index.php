@@ -3,7 +3,6 @@
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	session_start();
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
 		setcookie("save", '', time() - 60 * 60 * 24);
@@ -26,14 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('super-powers', $message);
 	checkCookies('biography', $message);
 
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] . "<br><div><a href = 'login.php'>Выйти из аккаунта</a></div>";
+	if (session_start() && !empty($_SESSION['login'])) {
+		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] . "<br><div><a href = 'login.php&do=logout'>Выйти из аккаунта</a></div>";
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div><div><a href = 'admin.php'>Войти как админ</a></div>";
 	}
 	require_once("form.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	session_start();
 	require_once(BASE_DIR . "src/UserData.php");
 	require_once(BASE_DIR . "src/formHandler.php");
 	$dbServerName = 'localhost';
@@ -84,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword, array(PDO::ATTR_PERSISTENT => true));
 
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+	if (session_start() && !empty($_SESSION['login'])) {
 		$userId = intval($_SESSION['loginid']);
 
 		try {
