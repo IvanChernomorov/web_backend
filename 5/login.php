@@ -1,7 +1,7 @@
 <?php
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
 		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 
 	if ($success) {
-		session_start();
 		$_SESSION['login'] = $userLogin;
 		$_SESSION['loginid'] = $userId;
 	} else {
