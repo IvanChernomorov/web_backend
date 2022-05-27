@@ -165,4 +165,30 @@ class Requester
 		
 		$db = null;
 	}
+	
+	public function changeUser(int $id){
+		start_session();
+		$db = new PDO(
+			"mysql:host={$this->dbUser->getServerName()};dbname={$this->dbUser->getDBName()}",
+			$this->dbUser->getUser(),
+			$this->dbUser->getPassword(),
+			array(PDO::ATTR_PERSISTENT => true)
+		);
+   		$success = false;
+    		try {
+      			$sql =
+        			"SELECT * FROM user_authentication
+				WHERE id = :id";
+      			$stmt = $db->prepare($sql);
+      			$stmt->execute(array('id' => $id));
+      			$result = $stmt->fetch();
+    		} catch (PDOException $e) {
+      			print('Error : ' . $e->getMessage());
+      			exit();
+    		}
+    		$_SESSION['login'] = result['login'];
+   		$_SESSION['loginid'] = result['id'];
+    		header("Location: index.php");
+    		exit();
+	}
 }
