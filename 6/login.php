@@ -3,8 +3,6 @@
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	session_start();
-
 	if (session_start() && !empty($_SESSION['login'])) {
 		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
 			session_destroy();
@@ -34,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 	require_once("loginpage.php");
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	session_start();
 	$dbServerName = 'localhost';
 	$dbUser = "u47556";
 	$dbPassword = "2195834";
