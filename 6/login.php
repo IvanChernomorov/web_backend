@@ -5,8 +5,10 @@ define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	session_start();
 
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		session_destroy();
+	if (session_start() && !empty($_SESSION['login'])) {
+		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
+			session_destroy();
+		}
 		header("Location: index.php");
 		exit();
 	}
@@ -84,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	}
 
 	if ($success) {
+		session_start();
 		$_SESSION['login'] = $userLogin;
 		$_SESSION['loginid'] = $userId;
 	} else {
