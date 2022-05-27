@@ -237,7 +237,7 @@ class Requester
       			print('Error : ' . $e->getMessage());
       			exit();
     		}
-		whriteCookies($result);
+		writeCookies($result);
 		header("Location: index.php");
     		exit();
 	}
