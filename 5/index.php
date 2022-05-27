@@ -1,7 +1,7 @@
 <?php
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
