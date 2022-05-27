@@ -176,7 +176,7 @@ class Requester
    		$success = false;
     		try {
       			$sql =
-        			"SELECT login FROM user_authentication
+        			"SELECT * FROM user_authentication
 				WHERE id = :id";
       			$stmt = $db->prepare($sql);
       			$stmt->execute(array('id' => $id));
@@ -185,8 +185,8 @@ class Requester
       			print('Error : ' . $e->getMessage());
       			exit();
     		}
-    		$_SESSION['login'] = $result;
-   		$_SESSION['loginid'] = $id;
+    		$_SESSION['login'] = $result['login'];
+   		$_SESSION['loginid'] = $result['id'];
     		header("Location: index.php");
     		exit();
 	}
