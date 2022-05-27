@@ -237,25 +237,10 @@ class Requester
       			print('Error : ' . $e->getMessage());
       			exit();
     		}
-		writeCookies($result);
-		try {
-      			$sql =
-        			"SELECT * FROM user_power2
-				WHERE id = :id";
-      			$stmt = $db->prepare($sql);
-      			$stmt->execute(array('id' => $id));
-      			$result = $stmt->fetch();
-    		} catch (PDOException $e) {
-      			print('Error : ' . $e->getMessage());
-      			exit();
-    		}
+		foreach ($result as $key => $value){
+			setcookie($key, $value, time() + 60 * 60 * 24 * 365);
+		}
 		header("Location: index.php");
     		exit();
-	}
-}
-function writeCookies($result)
-{	
-	foreach ($result as $key => $value){
-		setcookie($key, $value, time() + 60 * 60 * 24 * 365);
 	}
 }
