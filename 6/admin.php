@@ -23,8 +23,29 @@ if (
 $action = $_GET['action'] ?? '';
 $id = $_GET['id'] ?? '';
 
-if (!empty($action) && $action === 'delete' && !empty($id)) {
-	$dbRequester->deleteUser($id);
+if (!empty($action))
+{
+	if($action === 'delete' && !empty($id)) {
+		$dbRequester->deleteUser($id);
+	}
+	if($action == 'change'){
+		$db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword);
+		$success = false;
+		try {
+			$sql =
+				"SELECT * FROM user_authentication
+				WHERE id = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->execute('id' => $id);
+		$login = $stmt->fetch();
+		} catch (PDOException $e) {
+			print('Error : ' . $e->getMessage());
+			exit();
+		}
+			$_SESSION['login'] = $login;
+			$_SESSION['loginid'] = $id;
+		header("Location: index.php");
+		exit();
 }
 
 require_once("adminlog.php");
