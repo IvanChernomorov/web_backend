@@ -167,7 +167,6 @@ class Requester
 	}
 	
 	public function changeUser(int $id){
-		start_session();
 		$db = new PDO(
 			"mysql:host={$this->dbUser->getServerName()};dbname={$this->dbUser->getDBName()}",
 			$this->dbUser->getUser(),
