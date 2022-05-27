@@ -1,5 +1,7 @@
 <?php
 
+define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
+
 require_once(BASE_DIR . "src/Requester.php");
 require_once(BASE_DIR . "src/UserDB.php");
 
