@@ -2,7 +2,6 @@
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	print(empty($_COOKIE['session_name()']));
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
 		setcookie("save", '', time() - 60 * 60 * 24);
@@ -25,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('super-powers', $message);
 	checkCookies('biography', $message);
 	
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+	if (session_start() && !empty($_SESSION['login'])) {
 		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] ."<br><div><a href = 'login.php?do=logout'>Выйти из аккаунта</a></div>";
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div>";
