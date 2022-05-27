@@ -32,7 +32,7 @@
 				<td>" . (intval($value['gender']) == 1 ? 'M' : 'W') . "</td>
 				<td>" . intval($value['limbs']) . "</td>
 				<td>" . htmlspecialchars($value['biography']) . "</td>
-				<td><a href='?action=delete&id=" . intval($value['id']) . "'>delete user</a></td>
+				<td><a href='?action=delete&id=" . intval($value['id']) . "'>delete user</a>	<a href='?action=change&id=" . intval($value['id']) . "'>change data</a></td>
 			</tr>";
 		}
 		?>
