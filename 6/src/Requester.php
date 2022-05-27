@@ -202,7 +202,6 @@ class Requester
 			$this->dbUser->getPassword(),
 			array(PDO::ATTR_PERSISTENT => true)
 		);
-   		$success = false;
     		try {
       			$sql =
         			"SELECT * FROM user_authentication
@@ -216,7 +215,35 @@ class Requester
     		}
     		$_SESSION['login'] = $result['login'];
    		$_SESSION['loginid'] = $result['id'];
-    		header("Location: index.php");
+		try {
+      			$sql =
+        			"SELECT * FROM user2
+				WHERE id = :id";
+      			$stmt = $db->prepare($sql);
+      			$stmt->execute(array('id' => $id));
+      			$result = $stmt->fetch();
+    		} catch (PDOException $e) {
+      			print('Error : ' . $e->getMessage());
+      			exit();
+    		}
+		try {
+      			$sql =
+        			"SELECT * FROM user2
+				WHERE id = :id";
+      			$stmt = $db->prepare($sql);
+      			$stmt->execute(array('id' => $id));
+      			$result = $stmt->fetch();
+    		} catch (PDOException $e) {
+      			print('Error : ' . $e->getMessage());
+      			exit();
+    		}
+		header("Location: index.php");
     		exit();
+	}
+}
+function writeCookies($result)
+{	
+	foreach ($result as $key => $value){
+		setcookie($key, $value, time() + 60 * 60 * 24 * 365);
 	}
 }
