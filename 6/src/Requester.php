@@ -238,6 +238,17 @@ class Requester
       			exit();
     		}
 		writeCookies($result);
+		try {
+      			$sql =
+        			"SELECT * FROM user_power2
+				WHERE id = :id";
+      			$stmt = $db->prepare($sql);
+      			$stmt->execute(array('id' => $id));
+      			$result = $stmt->fetch();
+    		} catch (PDOException $e) {
+      			print('Error : ' . $e->getMessage());
+      			exit();
+    		}
 		header("Location: index.php");
     		exit();
 	}
