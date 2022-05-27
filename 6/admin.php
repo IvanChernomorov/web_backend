@@ -28,6 +28,7 @@ if (!empty($action)) {
     $dbRequester->deleteUser($id);
   }
   if ($action == 'change') {
+    session_start();
     $dbRequester->changeUser($id);
   }
 }
