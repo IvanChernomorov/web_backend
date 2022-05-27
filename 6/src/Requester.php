@@ -65,7 +65,36 @@ class Requester
 
 		return $result;
 	}
+	public function getSupPowUsersData(): array
+	{
+		$db = new PDO(
+			"mysql:host={$this->dbUser->getServerName()};dbname={$this->dbUser->getDBName()}",
+			$this->dbUser->getUser(),
+			$this->dbUser->getPassword(),
+			array(PDO::ATTR_PERSISTENT => true)
+		);
 
+		$result = array();
+
+		try {
+			$sql =
+				"SELECT u.id, p.power 
+				FROM user_power2 u 
+				JOIN power p 
+				ON u.power = p.id";
+
+			$stmt = $db->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+		} catch (PDOException $e) {
+			print('Error : ' . $e->getMessage());
+			exit();
+		}
+
+		$db = null;
+
+		return $result;
+	}
 	public function getCountUsersSupPower(int $power): int
 	{
 		$db = new PDO(
