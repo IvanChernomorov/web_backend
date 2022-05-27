@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	checkCookies('biography', $message);
 
 	if (session_start() && !empty($_SESSION['login'])) {
-		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] . "<br><div><a href = 'login.php&do=logout'>Выйти из аккаунта</a></div>";
+		$flog = "<span>Ваш логигн: </span>" . $_SESSION['login'] . "<br><div><a href = 'login.php?do=logout'>Выйти из аккаунта</a></div>";
 	} else {
 		$flog = "<div><a href = 'login.php'>Войти в аккаунт</a></div><div><a href = 'admin.php'>Войти как админ</a></div>";
 	}
