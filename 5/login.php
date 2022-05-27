@@ -6,7 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	session_start();
 
 	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-		session_destroy();
+		if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
+			session_destroy();
+		}
 		header("Location: index.php");
 		exit();
 	}
