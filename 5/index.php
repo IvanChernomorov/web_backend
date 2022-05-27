@@ -2,6 +2,7 @@
 
 define("BASE_DIR", __DIR__ . DIRECTORY_SEPARATOR);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+	echo empty($_COOKIE['session_name()']);
 	$flogin = '';
 	if (!empty($_COOKIE['save'])) {
 		setcookie("save", '', time() - 60 * 60 * 24);
