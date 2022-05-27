@@ -36,7 +36,7 @@ if (!empty($action))
 				"SELECT * FROM user_authentication
 				WHERE id = :id";
 		$stmt = $db->prepare($sql);
-		$stmt->execute('id' => $id);
+		$stmt->execute(array('id' => $id));
 		$login = $stmt->fetch();
 		} catch (PDOException $e) {
 			print('Error : ' . $e->getMessage());
