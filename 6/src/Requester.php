@@ -36,7 +36,6 @@ class Requester
 		if (empty($result)) {
 			return false;
 		}
-		echo 1; 
 		return password_verify($password, $result['password']);
 	}
 
