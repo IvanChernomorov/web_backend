@@ -28,23 +28,7 @@ if (!empty($action)) {
     $dbRequester->deleteUser($id);
   }
   if ($action == 'change') {
-    $db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword);
-    $success = false;
-    try {
-      $sql =
-        "SELECT * FROM user_authentication
-				WHERE id = :id";
-      $stmt = $db->prepare($sql);
-      $stmt->execute(array('id' => $id));
-      $login = $stmt->fetch();
-    } catch (PDOException $e) {
-      print('Error : ' . $e->getMessage());
-      exit();
-    }
-    $_SESSION['login'] = $login;
-    $_SESSION['loginid'] = $id;
-    header("Location: index.php");
-    exit();
+    $dbRequester->changeUser($id);
   }
 }
 
