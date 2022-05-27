@@ -181,7 +181,18 @@ class Requester
 			print('Error : ' . $e->getMessage());
 			exit();
 		}
-
+		
+		try {
+			$sql =
+				"DELETE FOM user_authentication
+				WHERE id = :id";
+			$stmt = $db->prepare($sql);
+			$stmt->execute(array('id' => $id));
+		} catch (PDOException $e) {
+			print('Error : ' . $e->getMessage());
+			exit();
+		}
+		
 		$db = null;
 	}
 }
