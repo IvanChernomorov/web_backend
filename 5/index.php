@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$db = new PDO("mysql:host=$dbServerName;dbname=$dbName", $dbUser, $dbPassword, array(PDO::ATTR_PERSISTENT => true));
 
-	if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+	if (session_start() && !empty($_SESSION['login'])) {
 		$userId = intval($_SESSION['loginid']);
 
 		try {
