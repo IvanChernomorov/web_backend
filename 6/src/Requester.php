@@ -185,7 +185,7 @@ class Requester
       			print('Error : ' . $e->getMessage());
       			exit();
     		}
-    		$_SESSION['login'] = result;
+    		$_SESSION['login'] = $result;
    		$_SESSION['loginid'] = $id;
     		header("Location: index.php");
     		exit();
