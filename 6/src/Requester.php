@@ -154,7 +154,7 @@ class Requester
 		
 		try {
 			$sql =
-				"DELETE FOM user_authentication
+				"DELETE FROM user_authentication
 				WHERE id = :id";
 			$stmt = $db->prepare($sql);
 			$stmt->execute(array('id' => $id));
